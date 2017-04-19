@@ -1,0 +1,24 @@
+{
+  "name": "node-practice",
+  "version": "1.0.0",
+  "description": "这是我在学习 Node.js 过程中的一些习作。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gnwzkd/node-practice.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gnwzkd/node-practice/issues"
+  },
+  "homepage": "https://github.com/gnwzkd/node-practice#readme",
+  "dependencies": {
+    "cheerio": "^0.22.0",
+    "materialize-css": "^0.98.2"
+  }
+}
