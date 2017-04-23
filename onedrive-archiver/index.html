@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+    li .material-icons {
+        vertical-align: middle;
+    }
+    
+    .progress {
+        margin-top: 0;
+    }
+    </style>
+</head>
+
+<body class="container">
+    <div class="progress" style="display:none">
+        <div class="indeterminate"></div>
+    </div>
+    <input type="text" placeholder="ResourceID" value="5833DC4DF1D8DD1D!105">
+    <button class="waves-effect waves-light btn" type="submit">提交</button>
+    <ul class="collection"></ul>
+</body>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+<script>
+$(() => {
+    let $spinner = $('.progress');
+    let $ul = $('ul').hide(300);
+    let getList = () => {
+        $spinner.show(300);
+        $ul.hide(300);
+        $.ajax({
+            url: './?resid=' + $('input').val(),
+            method: 'get',
+            dataType: 'json',
+            success: (data) => {
+                $ul.html('').hide(300);
+                $.each(data.items, (i, v) => {
+                    let [type, resid, fileName, imgLinkCode] = [v.itemType, v.resourceID, v.relationshipName, ''];
+                    if (/(jpg)|(png)|(gif)$/gi.test(fileName)) {
+                        imgLinkCode = `<br><img src="https://storage.live.com/items/${resid}:Thumbnail/${fileName}" alt="${fileName}"><br><textarea class="materialize-textarea">&lt;a href="https://storage.live.com/items/${resid}:/${fileName}"  target="_blank"&gt;&lt;img src="https://storage.live.com/items/${resid}:WebReady/${fileName}" alt="${fileName}"&gt;&lt;/a&gt;</textarea>`;
+                    }
+                    if (type === 'Folder') {
+                        $ul.prepend(`<li class="collection-item folder"><a href="javascript:void(0);" data-resid="${resid}"><i class='material-icons'>folder</i>${fileName}</a></li>`);
+                    } else {
+                        $ul.append(`<li class="collection-item file"><a href="https://storage.live.com/items/${resid}:/${fileName}"><i class='material-icons'>insert_drive_file</i>${fileName}</a>${imgLinkCode}</li>`);
+                    }
+                });
+                if (data.parentResourceId) {
+                    $ul.prepend(`<li class='collection-item parent'><a href='javascript:void(0);' data-resid="${data.parentResourceId}"><i class='material-icons'>arrow_back</i>...</a></li>`);
+                }
+                $spinner.hide(300);
+                $ul.show(300);
+            }
+        });
+    };
+    $('button').on('click', getList);
+    $('ul.collection').on('click', (e) => {
+        let target = e.target;
+        if (target.nodeName === 'A' && target.dataset.resid) {
+            $('input').val(target.dataset.resid);
+            getList();
+        }
+    })
+});
+</script>
+
+</html>
