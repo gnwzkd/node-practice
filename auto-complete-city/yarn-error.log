@@ -1,0 +1,43 @@
+Arguments: 
+  /home/gnwzkd/.nvm/versions/node/v10.15.3/bin/node /home/gnwzkd/.nvm/versions/node/v10.15.3/bin/yarn add cities.js
+
+PATH: 
+  /home/gnwzkd/.nvm/versions/node/v10.15.3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+
+Yarn version: 
+  1.15.2
+
+Node version: 
+  10.15.3
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/cities.js: Not found
+      at Request.params.callback [as _callback] (/home/gnwzkd/.nvm/versions/node/v10.15.3/lib/node_modules/yarn/lib/cli.js:66058:18)
+      at Request.self.callback (/home/gnwzkd/.nvm/versions/node/v10.15.3/lib/node_modules/yarn/lib/cli.js:129541:22)
+      at Request.emit (events.js:189:13)
+      at Request.<anonymous> (/home/gnwzkd/.nvm/versions/node/v10.15.3/lib/node_modules/yarn/lib/cli.js:130513:10)
+      at Request.emit (events.js:189:13)
+      at IncomingMessage.<anonymous> (/home/gnwzkd/.nvm/versions/node/v10.15.3/lib/node_modules/yarn/lib/cli.js:130435:12)
+      at Object.onceWrapper (events.js:277:13)
+      at IncomingMessage.emit (events.js:194:15)
+      at endReadableNT (_stream_readable.js:1125:12)
+      at process._tickCallback (internal/process/next_tick.js:63:19)
+
+npm manifest: 
+  {
+    "name": "auto-complete-city",
+    "version": "1.0.0",
+    "description": "Auto complete API.",
+    "main": "index.js",
+    "author": "Nyan Kusanagi",
+    "license": "MIT"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

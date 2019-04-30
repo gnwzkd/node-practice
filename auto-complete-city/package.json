@@ -1,0 +1,14 @@
+{
+  "name": "auto-complete-city",
+  "version": "1.0.0",
+  "description": "Auto complete API.",
+  "main": "index.js",
+  "author": "Nyan Kusanagi",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "cities.json": "^1.1.5"
+  }
+}
